@@ -19,20 +19,20 @@ namespace sharpHDF.Library.Helpers
         {
             var dataspaceId = H5D.get_space(_datasetId.Value).ToId();
 
-            int rank = H5S.get_simple_extent_ndims(dataspaceId.Value);
-            ulong[] dims = new ulong[rank];
-            ulong[] maxDims = new ulong[rank];
+            var rank = H5S.get_simple_extent_ndims(dataspaceId.Value);
+            var dims = new ulong[rank];
+            var maxDims = new ulong[rank];
             H5S.get_simple_extent_dims(dataspaceId.Value, dims, maxDims);
 
-            Hdf5Dataspace dataspace = new Hdf5Dataspace
+            var dataspace = new Hdf5Dataspace
             {
                 Id = dataspaceId,
                 NumberOfDimensions = rank
             };
 
-            for (int i = 0; i < dims.Length; i++)
+            for (var i = 0; i < dims.Length; i++)
             {
-                Hdf5DimensionProperty property = new Hdf5DimensionProperty
+                var property = new Hdf5DimensionProperty
                 {
                     CurrentSize = dims[i],
                     //MaximumSize = maxDims[i]

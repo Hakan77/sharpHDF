@@ -13,7 +13,7 @@ namespace sharpHDF.Library.Objects
         {
             FullPath = _fullPath;
 
-            string[] parts = _fullPath.Split("/".ToCharArray());
+            var parts = _fullPath.Split("/".ToCharArray());
             if (parts.Length > 0)
             {
                 Name = parts[parts.Length - 1];
@@ -30,9 +30,9 @@ namespace sharpHDF.Library.Objects
             }
             else
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
-                for (int i = 0; i < parts.Length - 1; i++)
+                for (var i = 0; i < parts.Length - 1; i++)
                 {
                     sb.Append(parts[i]);
                     sb.Append("/");

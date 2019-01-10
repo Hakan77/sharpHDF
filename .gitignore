@@ -1,7 +1,7 @@
-src/sharpHDF/bin/
-src/sharpHDF/obj/
-src/sharpHDF/packages/
-src/sharpHDFTests/bin/
-src/sharpHDFTests/obj/
 *.suo
 *.user
+TestResults/
+bin/
+obj/
+.vs/
+PublishProfiles/

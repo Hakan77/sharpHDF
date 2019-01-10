@@ -8,7 +8,7 @@ using NUnit.Framework;
 using sharpHDF.Library.Exceptions;
 using sharpHDF.Library.Objects;
 
-namespace sharpHDF.Library.Tests.Objects
+namespace SharpHDF.Library.Tests.Objects
 {
     [TestFixture]
     public class Hdf5TypeTests :BaseTest

@@ -5,7 +5,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 using System.IO;
 
-namespace sharpHDF.Library.Tests.Objects
+namespace SharpHDF.Library.Tests.Objects
 {
     public abstract class BaseTest
     {

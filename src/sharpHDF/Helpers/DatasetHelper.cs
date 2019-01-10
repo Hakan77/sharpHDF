@@ -25,10 +25,10 @@ namespace sharpHDF.Library.Helpers
         /// <returns></returns>
         public static Hdf5Dataset LoadDataset(Hdf5Identifier _fileId, Hdf5Identifier _datasetId, string _fullPath)
         {
-            Hdf5DataType datatype = TypeHelper.GetDataTypeFromDataset(_datasetId);
-            Hdf5Dataspace dataspace = DataspaceHelper.GetDataspace(_datasetId);
+            var datatype = TypeHelper.GetDataTypeFromDataset(_datasetId);
+            var dataspace = DataspaceHelper.GetDataspace(_datasetId);
 
-            Hdf5Dataset dataset = new Hdf5Dataset(_fileId, _datasetId, _fullPath)
+            var dataset = new Hdf5Dataset(_fileId, _datasetId, _fullPath)
             {
                 
                 Dataspace = dataspace,
@@ -182,13 +182,13 @@ namespace sharpHDF.Library.Helpers
         /// <returns></returns>
         public static T[] Read1DArray<T>(Hdf5Identifier _datasetIdentifer, Hdf5Dataset _dataset)
         {
-            T[] dataArray = new T[_dataset.Dataspace.DimensionProperties[0].CurrentSize];
+            var dataArray = new T[_dataset.Dataspace.DimensionProperties[0].CurrentSize];
 
-            GCHandle arrayHandle = GCHandle.Alloc(dataArray, GCHandleType.Pinned);
+            var arrayHandle = GCHandle.Alloc(dataArray, GCHandleType.Pinned);
 
             var dataType = H5T.copy(_dataset.DataType.NativeType.Value).ToId();
 
-            int result = H5D.read(
+            var result = H5D.read(
                 _datasetIdentifer.Value,
                 dataType.Value,
                 H5S.ALL,
@@ -217,11 +217,11 @@ namespace sharpHDF.Library.Helpers
 
             var datasetId = H5O.open(_dataset.FileId.Value, _dataset.Path.FullPath).ToId();
 
-            GCHandle arrayHandle = GCHandle.Alloc(_array, GCHandleType.Pinned);
+            var arrayHandle = GCHandle.Alloc(_array, GCHandleType.Pinned);
 
             var typeId = H5T.copy(_dataset.DataType.NativeType.Value).ToId();
 
-            int result = H5D.write(
+            var result = H5D.write(
                 datasetId.Value,
                 typeId.Value,
                 H5S.ALL,
@@ -256,11 +256,11 @@ namespace sharpHDF.Library.Helpers
 
             var datasetId = H5O.open(_dataset.FileId.Value, _dataset.Path.FullPath).ToId();
 
-            GCHandle arrayHandle = GCHandle.Alloc(_array, GCHandleType.Pinned);
+            var arrayHandle = GCHandle.Alloc(_array, GCHandleType.Pinned);
 
             var typeId = H5T.copy(_dataset.DataType.NativeType.Value).ToId();
 
-            int result = H5D.write(
+            var result = H5D.write(
                 datasetId.Value,
                 typeId.Value,
                 H5S.ALL,
@@ -278,14 +278,14 @@ namespace sharpHDF.Library.Helpers
 
         public static T[,] Read2DArray<T>(Hdf5Identifier _datasetIdentifer, Hdf5Dataset _dataset)
         {
-            T[,] dataArray = new T[_dataset.Dataspace.DimensionProperties[0].CurrentSize,
+            var dataArray = new T[_dataset.Dataspace.DimensionProperties[0].CurrentSize,
                 _dataset.Dataspace.DimensionProperties[1].CurrentSize];
 
-            GCHandle arrayHandle = GCHandle.Alloc(dataArray, GCHandleType.Pinned);
+            var arrayHandle = GCHandle.Alloc(dataArray, GCHandleType.Pinned);
 
             var dataType = H5T.copy(_dataset.DataType.NativeType.Value).ToId();
 
-            int result = H5D.read(
+            var result = H5D.read(
                 _datasetIdentifer.Value,
                 dataType.Value,
                 H5S.ALL,
@@ -309,7 +309,7 @@ namespace sharpHDF.Library.Helpers
             int _numberOfDimensions,
             List<Hdf5DimensionProperty> _properties)
         {
-            Hdf5Dataset dataset = CreateDataset(
+            var dataset = CreateDataset(
                 _fileId, 
                 _parentPath, 
                 _name, 
@@ -333,12 +333,12 @@ namespace sharpHDF.Library.Helpers
             int _numberOfDimensions, 
             List<Hdf5DimensionProperty> _properties)
         {
-            Hdf5Path path = _parentPath.Append(_name);
+            var path = _parentPath.Append(_name);
 
-            UInt64[] dimensionSize = new UInt64[_numberOfDimensions];
+            var dimensionSize = new UInt64[_numberOfDimensions];
             UInt64[] maxSize = null; // new UInt64[_numberOfDimensions];
 
-            int i = 0;
+            var i = 0;
             foreach (var property in _properties)
             {
                 dimensionSize[i] = property.CurrentSize;
@@ -355,13 +355,13 @@ namespace sharpHDF.Library.Helpers
                 i++;
             }
 
-            Hdf5Identifier dataspaceId = H5S.create_simple(_numberOfDimensions, dimensionSize, maxSize).ToId();
+            var dataspaceId = H5S.create_simple(_numberOfDimensions, dimensionSize, maxSize).ToId();
             
             //TODO handle string datasets
-            Hdf5Identifier typeId = H5T.copy(TypeHelper.GetNativeType(_datatype).Value).ToId();
+            var typeId = H5T.copy(TypeHelper.GetNativeType(_datatype).Value).ToId();
             var status = H5T.set_order(typeId.Value, H5T.order_t.LE);
 
-            Hdf5Identifier datasetId = H5D.create(_fileId.Value, path.FullPath, typeId.Value, dataspaceId.Value).ToId();
+            var datasetId = H5D.create(_fileId.Value, path.FullPath, typeId.Value, dataspaceId.Value).ToId();
 
             Hdf5Dataset dataset = null;
 

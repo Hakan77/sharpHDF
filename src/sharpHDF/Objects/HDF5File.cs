@@ -54,7 +54,7 @@ namespace sharpHDF.Library.Objects
                 throw new Hdf5FileExistsException();
             }
 
-            Hdf5Identifier fileId = H5F.create(_filename, H5F.ACC_EXCL).ToId();
+            var fileId = H5F.create(_filename, H5F.ACC_EXCL).ToId();
 
             if (fileId.Value > 0)
             {
@@ -71,7 +71,7 @@ namespace sharpHDF.Library.Objects
         public void Close()
         {
             H5F.close(Id.Value);
-            Id = 0.ToId();
+            Id = 0L.ToId();
         }
 
         /// <summary>

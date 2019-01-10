@@ -21,7 +21,7 @@ namespace sharpHDF.Library.Helpers
             var typeSign = H5T.get_sign(_typeId.Value);
             var typeOrder = H5T.get_order(_typeId.Value);
 
-            Hdf5DataType dt = new Hdf5DataType
+            var dt = new Hdf5DataType
             {
                 Id = _typeId,
                 Size = typeSize,

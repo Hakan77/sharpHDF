@@ -20,7 +20,7 @@ namespace sharpHDF.Library.Helpers
             if (_path != null
                 && _path.FullPath!="/")
             {
-                string fullPath = _path.FullPath;
+                var fullPath = _path.FullPath;
 
                 if (fullPath.EndsWith("/"))
                 {

@@ -6,7 +6,7 @@
 using NUnit.Framework;
 using sharpHDF.Library.Objects;
 
-namespace sharpHDF.Library.Tests.Objects
+namespace SharpHDF.Library.Tests.Objects
 {
     [TestFixture]
     public class Hdf5GroupTests : BaseTest

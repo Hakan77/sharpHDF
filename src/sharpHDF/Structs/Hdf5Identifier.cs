@@ -3,6 +3,8 @@
  * See license in repo for more information                                  *
  * https://github.com/sharpHDF/sharpHDF                                      *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#define HDF5_VER1_10
+
 using System;
 
 namespace sharpHDF.Library.Structs
@@ -11,29 +13,29 @@ namespace sharpHDF.Library.Structs
     {
 
 #if HDF5_VER1_10
-        public Hdf5Identifier(Int64 _value)
+        public Hdf5Identifier(long _value)
         {
             Value = _value;
         }
 
         public Int64 Value;
 #else
-        public Hdf5Identifier(Int32 _value)
+        public Hdf5Identifier(int _value)
         {
             Value = _value;
         }
-
-        public readonly Int32 Value;
+ 
+        public readonly int Value;
 #endif
 
         public bool Equals(Hdf5Identifier _other)
         {
             return Value == _other.Value;
         }
-
-        public override int GetHashCode()
+ 
+         public override int GetHashCode()
         {
-            return Value;
-        }
+            return Value.GetHashCode();
+        } 
     }
 }

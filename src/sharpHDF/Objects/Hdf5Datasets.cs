@@ -34,7 +34,7 @@ namespace sharpHDF.Library.Objects
             Hdf5DataTypes _datatype,            
             List<Hdf5DimensionProperty> _dimensionProperties)
         {
-            int numberOfDimensions = _dimensionProperties.Count;
+            var numberOfDimensions = _dimensionProperties.Count;
 
             return DatasetHelper.CreateDatasetAddToDatasets(
                 this,

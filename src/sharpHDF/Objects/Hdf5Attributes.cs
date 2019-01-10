@@ -29,7 +29,7 @@ namespace sharpHDF.Library.Objects
         /// <returns></returns>
         public bool Exists(string _name)
         {
-            foreach (Hdf5Attribute hdf5Attribute in this)
+            foreach (var hdf5Attribute in this)
             {
                 if (hdf5Attribute.Name == _name)
                 {
