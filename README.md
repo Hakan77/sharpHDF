@@ -1,3 +1,10 @@
+#SharpHDF NetStandard 2.0
+
+This library cloned from https://github.com/sharpHDF/sharpHDF and updated to NetStandard 2.0 Project.
+Nuget package updated to HDF.PInvoke.NETStandard" Version="1.10.200" 
+Also added  netcore console app 
+
+
 #sharpHDF
 
 [![appveyor.com](https://ci.appveyor.com/api/projects/status/github/sharpHDF/sharpHDF)](https://ci.appveyor.com/api/projects/status/github/sharpHDF/sharpHDF)
